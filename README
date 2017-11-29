@@ -1,0 +1,11 @@
+In order to run the code, stock data must be saved in an excel sheet located in the same folder as the project code. 
+
+The data must be named following the format of [ticker].csv
+
+Data should be downloaded from Quandl to be in the correct format
+
+To run the code: ./[executable] [ticker1] [ticker2] ... [tickerN]
+
+Example compiling then running commands:
+	compile: g++ returns.cpp stock.cpp initialization.cpp -o returns;
+	run: ./returns V AXP AAPL
