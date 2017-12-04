@@ -13,6 +13,10 @@ using namespace std;
 
 void initialize(string ticker, Stock &temp);
 
+void parseDate(dateStruct &d, string unparsedDate);
 
+void monthFormat(dateStruct &d, string &unparsedDate, int i);
+
+void yearFormat(dateStruct &d, string &unparsedDate, int i); 
 
 #endif 

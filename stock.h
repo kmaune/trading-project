@@ -21,6 +21,13 @@ struct stockData {
 		int volume;
 };
 
+struct dateStruct {
+	int day;
+	int month;
+	int year;
+
+	friend bool operator<(const dateStruct& a, const dateStruct& b);
+};
 
 class Stock {
 
@@ -30,6 +37,8 @@ class Stock {
 		//~stock();
 		vector<stockData> data; 
 		string ticker;
+		dateStruct date;
+
 };
 
 

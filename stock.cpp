@@ -7,6 +7,16 @@
 
 using namespace std;
 
+bool operator<(const dateStruct& a, const dateStruct& b) {
+	if(a.year == b.year) {
+		if(a.month == b.month) {
+			return (a.day < b.day);
+		}
+		return (a.month < b.month);
+	}
+	return (a.year < b.year);
+}
+
 Stock::Stock() {
 	ticker = "";
 	data.resize(1500);
