@@ -12,15 +12,6 @@
 
 using namespace std;
 
-struct stockData {
-
-		double open;
-		double close;
-		double high;
-		double low;
-		int volume;
-};
-
 struct dateStruct {
 	int day;
 	int month;
@@ -29,15 +20,28 @@ struct dateStruct {
 	friend bool operator<(const dateStruct& a, const dateStruct& b);
 };
 
+struct stockData {
+
+		double open;
+		double close;
+		double high;
+		double low;
+		int volume;
+		dateStruct date;
+};
+
+
 class Stock {
 
 	public:
 		Stock();
 		Stock(string tickc);
 		//~stock();
-		vector<stockData> data; 
+		map<dateStruct, stockData> data; 
 		string ticker;
-		dateStruct date;
+		map<dateStruct, double> calculateDailyReturns(double riskFreeRate);
+
+
 
 };
 

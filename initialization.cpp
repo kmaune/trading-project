@@ -49,13 +49,13 @@ void initialize(string ticker, Stock &temp) {
 		if(count > 0)
 		{
 			parseDate(d, unparsedDate);
-			temp.date = d;
+			sd.date = d;
 			sd.open  = stod(adjOpen);
 			sd.close = stod(adjClose);
 			sd.high = stod(adjHigh);
 			sd.low = stod(adjLow);
 			sd.volume = stod(adjVolume);
-			temp.data[count] = sd;
+			temp.data.insert(pair<dateStruct, stockData>(sd.date, sd));
 		}
 
 		/*
