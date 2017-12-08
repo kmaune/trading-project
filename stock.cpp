@@ -27,22 +27,31 @@ Stock::Stock(string tick) {
 	ticker = tick;
 }
 
-map<dateStruct, double> Stock::calculateDailyReturns(double riskFreeRate) {
-	//map<dateStruct, stockData>::iterator iterHelper = data.begin();
-	map<dateStruct, double> temp;
+void Stock::calculateDailyReturns(double riskFreeRate, double weight, map<dateStruct, double> &returns) {
+	//map<dateStruct, double> temp;
 	double dayReturn;
 	for(map<dateStruct, stockData>::iterator iter = data.begin(); iter != data.end(); ++iter) {
-		//cout << "iterHelper Date: " << iterHelper->first.month << "/" << iterHelper->first.day << "/" << iterHelper->first.year << endl;
-		cout << "iter Date: " << iter->first.month << "/" << iter->first.day << "/" << iter->first.year << endl;
+		//cout << "iter Date: " << iter->first.month << "/" << iter->first.day << "/" << iter->first.year << endl;
 
-		// (r_f - r_i)/r_i
+		// calculate stocks individual daily return, (r_f - r_i)/r_i, then subtract the risk free rate
 		dayReturn = (iter->second.close - iter->second.open)/iter->second.open;
 		dayReturn -= riskFreeRate;
-		cout << "dayReturn = " << dayReturn << endl;
-		temp.insert(pair<dateStruct, double>(iter->first, dayReturn));
+		//cout << "dayReturn = " << dayReturn << endl;
+		dailyReturns.insert(pair<dateStruct, double>(iter->first, dayReturn));
+
+		//Add the individual stocks daily return to the total daily returns map, using the weight to make the appropriate adjustment
+		//If this date hasn't been added to the total Returns map yet
+		if(returns.find(iter->first) == returns.end()) {
+			returns.insert(pair<dateStruct, double>(iter->first, dayReturn*weight));
+		}
+
+		//If the date has already been init. in the total returns map
+		else {
+			returns[iter->first] = returns[iter->first] + (dayReturn*weight);
+		}
 	}
 
-	return temp;
+	return;
 }
 
 

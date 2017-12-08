@@ -14,18 +14,14 @@
 using namespace std;
 
 
-
-// compute the excess return time series r_i-r_f for each of the three names and run the computations described 
-// in the doc, varying the parameter \alpha_0
-
 int main(int argc, char*argv[]) {
 
 	//Variable Initialization
 	vector<string> stockTickers(argc-1, "");
 	map <string, Stock> stocks;
-	//map <string, vector<double> > returns;
+	map <dateStruct, double> returns;
 	//vector <double> dailyReturns(1500, INT_MAX);
-	map<dateStruct, double> dailyReturns;
+	//map<dateStruct, double> dailyReturns;
 	double alpha0, totalReturn, riskFreeRate;
 	Stock temp;
 	string ticker;
@@ -43,14 +39,18 @@ int main(int argc, char*argv[]) {
 	alpha0 = .5;
 	riskFreeRate = 0.0;
 
-	//Run calculations
-	for(int i = 0; i < 1/*stockTickers.size()*/; ++i) {
-		ticker = stockTickers[i];
-		cout << ticker << endl;
-		temp = stocks.at(ticker);
-		temp.calculateDailyReturns(riskFreeRate);
-	}
+	//temporary weight value which assigns equal weight to each stock in the portfolio
+	double weight = 1/stockTickers.size();
 
+	//Run calculations
+
+	//MOVE THIS TO THE INITIALIZATION
+	//Calulate each individual stocks daily returns and add it's daily returns to the overall daily returns
+	for(int i = 0; i < stockTickers.size(); ++i) {
+		ticker = stockTickers[i];
+		temp = stocks.at(ticker);
+		temp.calculateDailyReturns(riskFreeRate, weight, returns);
+	}
 
 
 	return 0;

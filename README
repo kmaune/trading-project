@@ -1,5 +1,8 @@
 In order to run the code, stock data must be saved in an excel sheet located in the same folder as the project code. 
 
+*** It is important that all stock data is downloaded at the same time so that the data has all the same dates available. ***
+	e.g. If I download once file on one day, the most recent data may be from 11/9/17 and if I download another file the next week it's most recent data will be from 11/16/17 which will break the program/lead to incorrect calculations 
+
 The data must be named following the format of [ticker].csv
 
 Data should be downloaded from Quandl to be in the correct format

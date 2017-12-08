@@ -35,14 +35,12 @@ class Stock {
 
 	public:
 		Stock();
-		Stock(string tickc);
+		Stock(string tick);
 		//~stock();
 		map<dateStruct, stockData> data; 
+		map<dateStruct, double> dailyReturns;
 		string ticker;
-		map<dateStruct, double> calculateDailyReturns(double riskFreeRate);
-
-
-
+		void calculateDailyReturns(double riskFreeRate, double weight, map<dateStruct, double> &returns);
 };
 
 

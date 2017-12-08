@@ -16,7 +16,7 @@ void initialize(string ticker, Stock &temp) {
 	dateStruct d;
 	string trash, unparsedDate, adjOpen, adjClose, adjHigh, adjLow, adjVolume; 
 	string filepath = ticker+".csv";
-	cout << filepath << endl;
+	//cout << filepath << endl;
 
 	temp.ticker = ticker;
 
@@ -78,18 +78,18 @@ void initialize(string ticker, Stock &temp) {
 void parseDate(dateStruct& d, string unparsedDate) {
 	int j = 0;
 	bool formatFound = false;
-	cout << "Unparsed Date: " << unparsedDate << endl;
+	//cout << "Unparsed Date: " << unparsedDate << endl;
 	while(!formatFound) {
 		if(unparsedDate[j] == '/') {
 			//cout << "j value: " << j << endl;
-			cout << "Month substring: " << unparsedDate.substr(0,j) << endl;
+			//cout << "Month substring: " << unparsedDate.substr(0,j) << endl;
 			d.month = stod(unparsedDate.substr(0,j)); 
 			monthFormat(d, unparsedDate, j+1);
 			break;
 		}
 		if(unparsedDate[j] == '-') {
 			//cout << "j value: " << j << endl;
-			cout << "Year substring: " << unparsedDate.substr(0,j) << endl;
+			//cout << "Year substring: " << unparsedDate.substr(0,j) << endl;
 			d.year = stod(unparsedDate.substr(0,j));
 			yearFormat(d, unparsedDate, j+1);
 			break;
@@ -101,13 +101,13 @@ void parseDate(dateStruct& d, string unparsedDate) {
 void monthFormat(dateStruct &d, string &unparsedDate, int i) {
 	for(int j = 3; j < unparsedDate.size(); j++){
 		if(unparsedDate[j] == '/') {
-			cout << "Day substring: " << unparsedDate.substr(i, j-i) << endl;
+			//cout << "Day substring: " << unparsedDate.substr(i, j-i) << endl;
 			d.day = stod(unparsedDate.substr(i, j-i));
 			i = j+1;
 			break;
 		}
 	}		
-	cout << "Year substring: " << unparsedDate.substr(i, unparsedDate.size()-i) << endl;
+	//cout << "Year substring: " << unparsedDate.substr(i, unparsedDate.size()-i) << endl;
 	d.year = stod(unparsedDate.substr(i, unparsedDate.size()-i));
 
 }
@@ -117,12 +117,12 @@ void monthFormat(dateStruct &d, string &unparsedDate, int i) {
 void yearFormat(dateStruct &d, string &unparsedDate, int i) {
 	for(int j = 5; j < unparsedDate.size(); j++) {
 		if(unparsedDate[j] == '-') {
-			cout << "Month substring: " << unparsedDate.substr(i,j-i) << endl;
+			//cout << "Month substring: " << unparsedDate.substr(i,j-i) << endl;
 			d.month = stod(unparsedDate.substr(i,j-1));
 			i = j+1;
 			break;
 		}
 	}
-	cout << "Day substring: " << unparsedDate.substr(i, unparsedDate.size()-i) << endl;
+	//cout << "Day substring: " << unparsedDate.substr(i, unparsedDate.size()-i) << endl;
 	d.day = stod(unparsedDate.substr(i,unparsedDate.size()-i));
 }
