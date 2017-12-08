@@ -30,7 +30,6 @@ struct stockData {
 		dateStruct date;
 };
 
-
 class Stock {
 
 	public:
@@ -43,8 +42,5 @@ class Stock {
 		void calculateDailyReturns(double riskFreeRate, double weight, map<dateStruct, double> &returns);
 };
 
-
-
 #endif 
-
 

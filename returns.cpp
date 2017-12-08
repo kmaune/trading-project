@@ -20,8 +20,6 @@ int main(int argc, char*argv[]) {
 	vector<string> stockTickers(argc-1, "");
 	map <string, Stock> stocks;
 	map <dateStruct, double> returns;
-	//vector <double> dailyReturns(1500, INT_MAX);
-	//map<dateStruct, double> dailyReturns;
 	double alpha0, totalReturn, riskFreeRate;
 	Stock temp;
 	string ticker;
@@ -31,20 +29,16 @@ int main(int argc, char*argv[]) {
 		initialize(argv[i], temp);
 		cout << "Initialized!" << temp.ticker << endl;
 		stockTickers[i-1] = temp.ticker;
-		//Add stock class to stocks map
 		stocks.insert( pair<string, Stock>(temp.ticker, temp) );		
 	}
 
-	//give alpha an initial value
+	//give alphas and risk free rate an initial value
 	alpha0 = .5;
 	riskFreeRate = 0.0;
 
-	//temporary weight value which assigns equal weight to each stock in the portfolio
+	//temporary weight value which assigns equal weight to each stock
 	double weight = 1/stockTickers.size();
 
-	//Run calculations
-
-	//MOVE THIS TO THE INITIALIZATION
 	//Calulate each individual stocks daily returns and add it's daily returns to the overall daily returns
 	for(int i = 0; i < stockTickers.size(); ++i) {
 		ticker = stockTickers[i];

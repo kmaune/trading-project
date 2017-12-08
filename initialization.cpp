@@ -58,17 +58,6 @@ void initialize(string ticker, Stock &temp) {
 			temp.data.insert(pair<dateStruct, stockData>(sd.date, sd));
 		}
 
-		/*
-		if(count < 4 && count > 0)
-		{
-			cout << "open" << sd.open << endl;
-			cout << "high" << sd.high << endl;
-			cout << "low" << sd.low << endl;
-			cout << "close" << sd.close << endl;
-			cout << "volume" << sd.volume << endl;
-		}	
-		*/
-		
 		count++;
 	}
 
@@ -81,14 +70,12 @@ void parseDate(dateStruct& d, string unparsedDate) {
 	//cout << "Unparsed Date: " << unparsedDate << endl;
 	while(!formatFound) {
 		if(unparsedDate[j] == '/') {
-			//cout << "j value: " << j << endl;
 			//cout << "Month substring: " << unparsedDate.substr(0,j) << endl;
 			d.month = stod(unparsedDate.substr(0,j)); 
 			monthFormat(d, unparsedDate, j+1);
 			break;
 		}
 		if(unparsedDate[j] == '-') {
-			//cout << "j value: " << j << endl;
 			//cout << "Year substring: " << unparsedDate.substr(0,j) << endl;
 			d.year = stod(unparsedDate.substr(0,j));
 			yearFormat(d, unparsedDate, j+1);
@@ -111,8 +98,6 @@ void monthFormat(dateStruct &d, string &unparsedDate, int i) {
 	d.year = stod(unparsedDate.substr(i, unparsedDate.size()-i));
 
 }
-
-
 
 void yearFormat(dateStruct &d, string &unparsedDate, int i) {
 	for(int j = 5; j < unparsedDate.size(); j++) {
