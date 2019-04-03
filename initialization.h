@@ -11,7 +11,7 @@
 using namespace std;
 
 
-void initialize(string ticker, Stock &temp);
+void initialize(string ticker, Stock &temp, double weight);
 
 void parseDate(dateStruct &d, string unparsedDate);
 

@@ -1,13 +1,11 @@
-//returns.cpp
+/* returns.cpp */
 
 #include <iostream>
 #include <cmath>
 #include <string> 
 #include <fstream>
 #include <vector>
-#include <unordered_map>
 #include <map>
-#include <climits>
 #include "stock.h"
 #include "initialization.h"
 
@@ -24,9 +22,12 @@ int main(int argc, char*argv[]) {
 	Stock temp;
 	string ticker;
 
+	//temporary weight value which assigns equal weight to each stock
+ 	double tempWeight = 1.0/(argc-1);
 
+	//Initialize stocks 
 	for(int i = 1; i < argc; ++i) {
-		initialize(argv[i], temp);
+		initialize(argv[i], temp, tempWeight);
 		cout << "Initialized!" << temp.ticker << endl;
 		stockTickers[i-1] = temp.ticker;
 		stocks.insert( pair<string, Stock>(temp.ticker, temp) );		
@@ -36,16 +37,18 @@ int main(int argc, char*argv[]) {
 	alpha0 = .5;
 	riskFreeRate = 0.0;
 
-	//temporary weight value which assigns equal weight to each stock
-	double weight = 1/stockTickers.size();
-
 	//Calulate each individual stocks daily returns and add it's daily returns to the overall daily returns
 	for(int i = 0; i < stockTickers.size(); ++i) {
 		ticker = stockTickers[i];
 		temp = stocks.at(ticker);
-		temp.calculateDailyReturns(riskFreeRate, weight, returns);
+		temp.calculateDailyReturns(riskFreeRate, returns);
 	}
 
+	//Run MLE or Min log likelihood calculation
+
+	//For given alpha calculate optimal phi
+
+	
 
 	return 0;
 

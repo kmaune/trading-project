@@ -1,4 +1,4 @@
-// stock.cpp //
+/* stock.cpp */
 
 #include <vector>
 #include <string>
@@ -21,13 +21,15 @@ bool operator<(const dateStruct& a, const dateStruct& b) {
 
 Stock::Stock() {
 	ticker = "";
+	weight = 1.0;
 }
 
-Stock::Stock(string tick) {
+Stock::Stock(string tick, double wght) {
 	ticker = tick;
+	weight = wght;
 }
 
-void Stock::calculateDailyReturns(double riskFreeRate, double weight, map<dateStruct, double> &returns) {
+void Stock::calculateDailyReturns(double riskFreeRate, map<dateStruct, double> &returns) {
 	double dayReturn;
 	for(map<dateStruct, stockData>::iterator iter = data.begin(); iter != data.end(); ++iter) {
 		// calculate stocks individual daily return minus risk free rate

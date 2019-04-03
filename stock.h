@@ -1,7 +1,4 @@
-//// Stock.h ////
-/* 
-
-*/
+/* stock.h */
 
 #ifndef __STOCK_H__
 #define __STOCK_H__
@@ -34,12 +31,13 @@ class Stock {
 
 	public:
 		Stock();
-		Stock(string tick);
+		Stock(string tick, double wght);
 		//~stock();
 		map<dateStruct, stockData> data; 
 		map<dateStruct, double> dailyReturns;
 		string ticker;
-		void calculateDailyReturns(double riskFreeRate, double weight, map<dateStruct, double> &returns);
+		double weight;
+		void calculateDailyReturns(double riskFreeRate, map<dateStruct, double> &returns);
 };
 
 #endif 

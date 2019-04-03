@@ -10,15 +10,16 @@
 
 using namespace std;
 
-void initialize(string ticker, Stock &temp) {
+void initialize(string ticker, Stock &temp, double weight) {
 
 	stockData sd;
 	dateStruct d;
 	string trash, unparsedDate, adjOpen, adjClose, adjHigh, adjLow, adjVolume; 
-	string filepath = ticker+".csv";
+	string filepath = "data/"+ticker+".csv";
 	//cout << filepath << endl;
 
 	temp.ticker = ticker;
+	temp.weight = weight;
 
 	//Initialize and open excel file with stock info
 	ifstream stockInfo;
